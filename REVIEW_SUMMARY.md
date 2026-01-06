@@ -48,7 +48,7 @@ Both skills aim to help AI assistants understand and migrate TIBCO Objectstar le
 
 | Gap | Impact | Status |
 |-----|--------|--------|
-| No dedicated pitfalls file | Anti-patterns scattered in `patterns.md` only | Open |
+| ~~No dedicated pitfalls file~~ | ~~Anti-patterns scattered in `patterns.md` only~~ | **Fixed** — split into pitfalls.md |
 | ~~Missing: Lock reliance side effects~~ | ~~Codex covers this, Claude doesn't~~ | **Fixed** |
 | ~~Missing: Implicit global state~~ | ~~Codex covers this anti-pattern~~ | **Fixed** |
 | ~~Missing: Repeated code blocks~~ | ~~Codex covers duplication issues~~ | **Fixed** |

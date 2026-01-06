@@ -1,5 +1,7 @@
 # Objectstar Code Patterns
 
+Common patterns and examples for Objectstar rules. For anti-patterns and pitfalls to avoid, see [pitfalls.md](pitfalls.md).
+
 ## Rule Patterns
 
 ### Basic CRUD Rule
@@ -172,128 +174,6 @@ CALC_FULL_NAME;
 ---------------------------------------------------------------------------
 EMPLOYEES.FULL_NAME = EMPLOYEES.FNAME || ' ' || EMPLOYEES.LNAME;
 ```
-
-## Anti-Patterns to Refactor
-
-### Deeply Nested FORALL (Refactor)
-```
--- BAD: Deep nesting, poor performance
-FORALL A:
-    FORALL B:
-        FORALL C:
-            FORALL D:
-                -- processing
-            END;
-        END;
-    END;
-END;
-
--- BETTER: Extract inner loops to separate rules
-FORALL A:
-    CALL PROCESS_B_LEVEL(A.KEY);
-END;
-```
-
-### Missing Exception Handlers (Refactor)
-```
--- BAD: No handlers, fails silently
-GET CUSTOMERS WHERE CUST# = INPUT_ID;
-CALL PROCESS_CUSTOMER;
-
--- BETTER: Handle expected exceptions
-GET CUSTOMERS WHERE CUST# = INPUT_ID;
-CALL PROCESS_CUSTOMER;
-ON GETFAIL:
-    CALL MSGLOG('Customer not found: ' || INPUT_ID);
-    SIGNAL CUSTOMER_NOT_FOUND;
-```
-
-### Hardcoded Values (Refactor)
-```
--- BAD: Magic numbers
-DISCOUNT = ORDER_AMT * 0.15;
-
--- BETTER: Use configuration table
-GET CONFIG WHERE CONFIG_KEY = 'DISCOUNT_RATE';
-DISCOUNT = ORDER_AMT * CONFIG.CONFIG_VALUE;
-```
-
-### Overly Complex Condition Quadrant (Refactor)
-```
--- BAD: Too many columns, hard to read
-cond1;  | Y Y Y Y N N N N
-cond2;  | Y Y N N Y Y N N
-cond3;  | Y N Y N Y N Y N
---------+----------------
-act1;   | 1
-act2;   |   1
-...
-
--- BETTER: Split into multiple rules with clear names
-CALL PROCESS_TYPE_A;    -- When cond1=Y, cond2=Y, cond3=Y
-CALL PROCESS_TYPE_B;    -- When cond1=Y, cond2=Y, cond3=N
--- etc.
-```
-
-### Implicit Global State (Refactor)
-```
--- BAD: Using screen table as implicit data passing
--- Rule A writes to SCRATCH_SCREEN, Rule B reads from it
--- Hidden dependency, testing difficulties
-
-CALL PROCESS_STEP_1;    -- Writes to SCRATCH_SCREEN.VALUE1
-CALL PROCESS_STEP_2;    -- Expects SCRATCH_SCREEN.VALUE1 to be set
-
--- BETTER: Pass values explicitly via parameters
-CALL PROCESS_STEP_1(INPUT_VAL, RESULT_VAL);
-CALL PROCESS_STEP_2(RESULT_VAL, FINAL_VAL);
-
--- Or use session tables with clear naming
-GET STEP1_RESULTS(SESSION_ID);
-```
-
-**Why**: ObjectStar's semantics breaks the principle of encapsulation. Implicit state creates hidden dependencies between rules, making testing and migration difficult. ([Verified](https://freesoftus.com/services/application-code-conversion/objectstar-conversion/))
-
-### Reliance on Locking Side Effects (Refactor)
-```
--- BAD: Using GET to lock a non-existent key
-GET LOCKS_TABLE WHERE KEY = 'PROCESS_XYZ';
--- In ObjectStar, this locks 'PROCESS_XYZ' even if no record exists
--- Used as a semaphore/mutex pattern
-
--- BETTER: Use explicit locking table with actual records
-GET SEMAPHORES WHERE SEM_NAME = 'PROCESS_XYZ' WITH MINLOCK;
-SEMAPHORES.IN_USE = 'Y';
-REPLACE SEMAPHORES;
--- Release lock
-SEMAPHORES.IN_USE = 'N';
-REPLACE SEMAPHORES;
-```
-
-**Why**: ObjectStar locks non-existent primary keys — a behavior difficult to replicate in RDBMS systems. This anti-pattern causes migration bugs. ([Verified](https://freesoftus.com/services/application-code-conversion/objectstar-conversion/))
-
-### Repeated Code Blocks (Refactor)
-```
--- BAD: Same tax calculation in multiple rules
--- In CALC_ORDER:
-TAX = SUBTOTAL * 0.08;
--- In CALC_INVOICE:
-TAX = SUBTOTAL * 0.08;
--- In CALC_ESTIMATE:
-TAX = SUBTOTAL * 0.08;
-
--- BETTER: Extract to shared utility rule
-CALC_TAX(AMOUNT);
-LOCAL TAX_RATE;
----------------------------------------------------------------------------
-GET CONFIG WHERE KEY = 'TAX_RATE';
-RETURN(AMOUNT * CONFIG.VALUE);
----------------------------------------------------------------------------
-ON GETFAIL:
-    RETURN(AMOUNT * 0.08);  -- Default fallback
-```
-
-**Why**: Duplicated business logic leads to inconsistent behavior when one copy is updated but others are forgotten. Extract to shared rules invoked via CALL.
 
 ## Performance Patterns
 

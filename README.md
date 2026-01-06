@@ -156,7 +156,8 @@ objectstar-skill/
 │           ├── SKILL.md              # Skill definition & workflow
 │           └── references/
 │               ├── syntax.md         # Complete language reference
-│               ├── patterns.md       # Code patterns & anti-patterns
+│               ├── patterns.md       # Code patterns & examples
+│               ├── pitfalls.md       # Anti-patterns & common mistakes
 │               ├── migration.md      # Java migration strategies
 │               └── tools.md          # Built-in functions (100+)
 │

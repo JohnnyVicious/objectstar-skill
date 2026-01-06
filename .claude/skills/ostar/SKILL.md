@@ -278,6 +278,8 @@ For iterative improvement, use this pattern:
 4. **Document scope dependencies** — LOCAL variables used across rule calls
 5. **Add Browse hints** — Use Browse Mode for read-only operations
 
+For anti-patterns to avoid during refactoring, see [pitfalls.md](references/pitfalls.md).
+
 ## Migration Priorities
 
 For Java migration, address these semantic gaps (see [migration.md](references/migration.md) for details):
@@ -292,5 +294,6 @@ For Java migration, address these semantic gaps (see [migration.md](references/m
 
 - [syntax.md](references/syntax.md) — Complete syntax reference with all data types
 - [patterns.md](references/patterns.md) — Common code patterns with examples
+- [pitfalls.md](references/pitfalls.md) — Anti-patterns and common mistakes to avoid
 - [migration.md](references/migration.md) — Java migration mappings and strategies
 - [tools.md](references/tools.md) — Built-in shareable tools reference
