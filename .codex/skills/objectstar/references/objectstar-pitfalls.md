@@ -1,6 +1,6 @@
-# ObjectStar Common Pitfalls
+# Objectstar Common Pitfalls
 
-This document summarizes recurring problems in legacy ObjectStar (OSB) code that should be avoided or flagged during analysis or refactoring.
+This document summarizes recurring problems in legacy Objectstar (OSB) code that should be avoided or flagged during analysis or refactoring.
 
 ## 1. Overuse of ON ERROR
 **Issue:** Catch-all `ON ERROR` blocks used to suppress or redirect flow, often without proper rollback or message logging.

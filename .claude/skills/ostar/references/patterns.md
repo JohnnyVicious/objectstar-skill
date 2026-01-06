@@ -1,5 +1,7 @@
 # Objectstar Code Patterns
 
+Common patterns and examples for Objectstar rules. For anti-patterns and pitfalls to avoid, see [pitfalls.md](pitfalls.md).
+
 ## Rule Patterns
 
 ### Basic CRUD Rule
@@ -171,68 +173,6 @@ ON GETFAIL:
 CALC_FULL_NAME;
 ---------------------------------------------------------------------------
 EMPLOYEES.FULL_NAME = EMPLOYEES.FNAME || ' ' || EMPLOYEES.LNAME;
-```
-
-## Anti-Patterns to Refactor
-
-### Deeply Nested FORALL (Refactor)
-```
--- BAD: Deep nesting, poor performance
-FORALL A:
-    FORALL B:
-        FORALL C:
-            FORALL D:
-                -- processing
-            END;
-        END;
-    END;
-END;
-
--- BETTER: Extract inner loops to separate rules
-FORALL A:
-    CALL PROCESS_B_LEVEL(A.KEY);
-END;
-```
-
-### Missing Exception Handlers (Refactor)
-```
--- BAD: No handlers, fails silently
-GET CUSTOMERS WHERE CUST# = INPUT_ID;
-CALL PROCESS_CUSTOMER;
-
--- BETTER: Handle expected exceptions
-GET CUSTOMERS WHERE CUST# = INPUT_ID;
-CALL PROCESS_CUSTOMER;
-ON GETFAIL:
-    CALL MSGLOG('Customer not found: ' || INPUT_ID);
-    SIGNAL CUSTOMER_NOT_FOUND;
-```
-
-### Hardcoded Values (Refactor)
-```
--- BAD: Magic numbers
-DISCOUNT = ORDER_AMT * 0.15;
-
--- BETTER: Use configuration table
-GET CONFIG WHERE CONFIG_KEY = 'DISCOUNT_RATE';
-DISCOUNT = ORDER_AMT * CONFIG.CONFIG_VALUE;
-```
-
-### Overly Complex Condition Quadrant (Refactor)
-```
--- BAD: Too many columns, hard to read
-cond1;  | Y Y Y Y N N N N
-cond2;  | Y Y N N Y Y N N
-cond3;  | Y N Y N Y N Y N
---------+----------------
-act1;   | 1
-act2;   |   1
-...
-
--- BETTER: Split into multiple rules with clear names
-CALL PROCESS_TYPE_A;    -- When cond1=Y, cond2=Y, cond3=Y
-CALL PROCESS_TYPE_B;    -- When cond1=Y, cond2=Y, cond3=N
--- etc.
 ```
 
 ## Performance Patterns

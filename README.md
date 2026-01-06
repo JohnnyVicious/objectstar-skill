@@ -153,22 +153,36 @@ objectstar-skill/
 ├── .claude/
 │   └── skills/
 │       └── ostar/
-│           ├── SKILL.md        # Skill definition & workflow
-│           ├── syntax.md       # Complete language reference
-│           ├── patterns.md     # Code patterns & anti-patterns
-│           ├── migration.md    # Java migration strategies
-│           └── tools.md        # Built-in functions (100+)
+│           ├── SKILL.md              # Skill definition & workflow
+│           └── references/
+│               ├── syntax.md         # Complete language reference
+│               ├── patterns.md       # Code patterns & examples
+│               ├── pitfalls.md       # Anti-patterns & common mistakes
+│               ├── migration.md      # Java migration strategies
+│               └── tools.md          # Built-in functions (100+)
 │
 ├── .codex/
 │   └── skills/
 │       └── objectstar/
-│           ├── SKILL.md        # Skill metadata
-│           ├── object_star_syntax.md
-│           ├── object_star_pitfalls.md
-│           └── object_star_migration_guide.md
+│           ├── SKILL.md              # Skill metadata
+│           └── references/
+│               ├── objectstar-syntax.md
+│               ├── objectstar-tools.md
+│               ├── objectstar-pitfalls.md
+│               └── objectstar-migration.md
 │
-├── CLAUDE.md                   # Claude Code guidance
-├── LICENSE                     # Apache 2.0
+├── CLAUDE.md                         # Claude Code guidance
+├── REVIEW_SUMMARY.md                 # Skills comparison & analysis
+├── docs/
+│   ├── SOURCES.md                    # External references & history
+│   ├── TO_VERIFY.md                  # Items needing verification
+│   └── 6.0-programming-in-rules/     # Official TIBCO documentation (markdown)
+│       ├── 00-INDEX.md               # Document structure
+│       ├── 02-rule-composition.md    # Rule components, condition quadrants
+│       ├── 04-action-statements.md   # CALL, GET, FORALL, etc.
+│       ├── 05-exception-handling.md  # ON/SIGNAL/UNTIL
+│       └── ... (12 files total)
+├── LICENSE                           # Apache 2.0
 └── README.md
 ```
 
@@ -180,8 +194,6 @@ objectstar-skill/
 - [x] OpenAI Codex skill — Optimized implementation
 - [ ] GitHub Copilot CLI skill
 - [ ] COBOL interop patterns (Objectstar ↔ COBOL bridges)
-- [ ] Automated migration script generation
-- [ ] VS Code extension for inline Objectstar hints
 
 ---
 
