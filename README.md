@@ -166,6 +166,7 @@ objectstar-skill/
 │           ├── SKILL.md              # Skill metadata
 │           └── references/
 │               ├── ObjectStar_Syntax.md
+│               ├── ObjectStar_BuiltInTools.md
 │               ├── ObjectStar_Pitfalls.md
 │               └── ObjectStar_MigrationGuide.md
 │

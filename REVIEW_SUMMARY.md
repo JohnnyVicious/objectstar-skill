@@ -58,7 +58,7 @@ Both skills aim to help AI assistants understand and migrate TIBCO Objectstar le
 
 | Gap | Impact | Status |
 |-----|--------|--------|
-| No tools reference | Missing 100+ built-in functions | Open |
+| ~~No tools reference~~ | ~~Missing 100+ built-in functions~~ | **Fixed** |
 | ~~Shallow migration guide~~ | ~~Only 51 lines vs Claude's 363~~ | **Fixed** — now ~250 lines |
 | ~~No Java code examples~~ | ~~Claude provides complete translations~~ | **Fixed** — 6 examples added |
 | ~~Missing data type mappings~~ | ~~No semantic/syntax → Java tables~~ | **Fixed** |
@@ -147,7 +147,7 @@ The IF/ENDIF syntax error was verified against official TIBCO documentation:
 1. Add missing critical content:
    - ~~Condition quadrant explanation with examples~~ **Done**
    - ~~Data type mapping table~~ **Done**
-   - Built-in functions reference
+   - ~~Built-in functions reference~~ **Done**
    - ~~Java migration code examples~~ **Done**
 2. ~~Review `ENDON;` syntax~~ **Fixed** — removed non-standard ENDON; syntax
 

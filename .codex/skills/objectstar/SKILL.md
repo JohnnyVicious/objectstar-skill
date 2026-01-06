@@ -161,6 +161,7 @@ See [ObjectStar_MigrationGuide.md](references/ObjectStar_MigrationGuide.md).
 
 ## Resources
 - [ObjectStar Syntax](references/ObjectStar_Syntax.md)
+- [Built-in Tools](references/ObjectStar_BuiltInTools.md)
 - [Known Pitfalls](references/ObjectStar_Pitfalls.md)
 - [Migration Guide](references/ObjectStar_MigrationGuide.md)
 
