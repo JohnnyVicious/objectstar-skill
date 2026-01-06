@@ -46,25 +46,25 @@ Both skills aim to help AI assistants understand and migrate TIBCO Objectstar le
 
 ### Claude Skill Gaps
 
-| Gap | Impact |
-|-----|--------|
-| No dedicated pitfalls file | Anti-patterns scattered in `patterns.md` only |
-| Missing: Lock reliance side effects | Codex covers this, Claude doesn't |
-| Missing: Implicit global state | Codex covers this anti-pattern |
-| Missing: Repeated code blocks | Codex covers duplication issues |
-| No OTP vs Batch distinction | Codex clearly separates these contexts |
+| Gap | Impact | Status |
+|-----|--------|--------|
+| No dedicated pitfalls file | Anti-patterns scattered in `patterns.md` only | Open |
+| ~~Missing: Lock reliance side effects~~ | ~~Codex covers this, Claude doesn't~~ | **Fixed** |
+| ~~Missing: Implicit global state~~ | ~~Codex covers this anti-pattern~~ | **Fixed** |
+| ~~Missing: Repeated code blocks~~ | ~~Codex covers duplication issues~~ | **Fixed** |
+| No OTP vs Batch distinction | Codex clearly separates these contexts | Open |
 
 ### Codex Skill Gaps
 
-| Gap | Impact |
-|-----|--------|
-| No tools reference | Missing 100+ built-in functions |
-| Shallow migration guide | Only 51 lines vs Claude's 363 |
-| No Java code examples | Claude provides complete translations |
-| Missing data type mappings | No semantic/syntax → Java tables |
-| Missing exception hierarchy | No visual exception tree |
-| No condition quadrant examples | Critical feature barely covered |
-| Missing parameterized tables | Only mentioned, not explained |
+| Gap | Impact | Status |
+|-----|--------|--------|
+| No tools reference | Missing 100+ built-in functions | Open |
+| ~~Shallow migration guide~~ | ~~Only 51 lines vs Claude's 363~~ | **Fixed** — now ~250 lines |
+| ~~No Java code examples~~ | ~~Claude provides complete translations~~ | **Fixed** — 6 examples added |
+| ~~Missing data type mappings~~ | ~~No semantic/syntax → Java tables~~ | **Fixed** |
+| ~~Missing exception hierarchy~~ | ~~No visual exception tree~~ | **Fixed** — in syntax.md |
+| ~~No condition quadrant examples~~ | ~~Critical feature barely covered~~ | **Fixed** |
+| Missing parameterized tables | Only mentioned, not explained | Open |
 
 ---
 
@@ -146,9 +146,9 @@ The IF/ENDIF syntax error was verified against official TIBCO documentation:
 #### For Codex Skill
 1. Add missing critical content:
    - ~~Condition quadrant explanation with examples~~ **Done**
-   - Data type mapping table
+   - ~~Data type mapping table~~ **Done**
    - Built-in functions reference
-   - Java migration code examples
+   - ~~Java migration code examples~~ **Done**
 2. ~~Review `ENDON;` syntax~~ **Fixed** — removed non-standard ENDON; syntax
 
 ### Content Harmonization
