@@ -173,7 +173,13 @@ objectstar-skill/
 ├── REVIEW_SUMMARY.md                 # Skills comparison & analysis
 ├── docs/
 │   ├── SOURCES.md                    # External references & history
-│   └── TO_VERIFY.md                  # Items needing verification
+│   ├── TO_VERIFY.md                  # Items needing verification
+│   └── 6.0-programming-in-rules/     # Official TIBCO documentation (markdown)
+│       ├── 00-INDEX.md               # Document structure
+│       ├── 02-rule-composition.md    # Rule components, condition quadrants
+│       ├── 04-action-statements.md   # CALL, GET, FORALL, etc.
+│       ├── 05-exception-handling.md  # ON/SIGNAL/UNTIL
+│       └── ... (12 files total)
 ├── LICENSE                           # Apache 2.0
 └── README.md
 ```

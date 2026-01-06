@@ -2,6 +2,29 @@
 
 This folder contains reference documentation gathered from external sources to support the Objectstar skills.
 
+## Local Documentation
+
+### 6.0-programming-in-rules/
+
+**Source**: [TIBCO® Object Service Broker Programming in Rules](https://docs.tibco.com/pub/object_service_broker/6.0.0_july_2012/doc/pdf/tib_osb_processing.pdf?id=3), Software Release 6.0, July 2012
+
+Comprehensive markdown reference extracted from official TIBCO documentation:
+
+| File | Contents |
+|------|----------|
+| `00-INDEX.md` | Document structure and quick reference |
+| `01-introduction.md` | Introduction to OSB Rules |
+| `02-rule-composition.md` | Rule components: declaration, conditions, actions, handlers |
+| `03-supported-characters.md` | Lexical elements, character sets |
+| `04-action-statements.md` | All action statements (CALL, GET, FORALL, etc.) |
+| `05-exception-handling.md` | ON/SIGNAL/UNTIL exception handling |
+| `06-expressions-operators.md` | Expressions, data types, operators |
+| `07-transaction-processing.md` | Transactions, locks, synchronization |
+| `08-conditional-null-arithmetic.md` | Conditional processing, null handling |
+| `09-rules-libraries-editor.md` | Rules libraries, Rule Editor |
+| `10-execution-debugging.md` | Execution and Rule Debugger |
+| `11-syntax-reference.md` | BNF notation and syntax specification |
+
 ## Online References
 
 See `CLAUDE.md` for the full list of URLs. Key sources:

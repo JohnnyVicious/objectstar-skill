@@ -102,9 +102,13 @@ Consult this file before making changes to understand what's been reviewed and w
 
 ## External References
 
-### TIBCO Official Documentation
+### Local Documentation (from Official Sources)
 
-These are the authoritative sources for Objectstar/OSB language details:
+The `docs/6.0-programming-in-rules/` folder contains markdown files extracted from [TIBCO® Object Service Broker Programming in Rules](https://docs.tibco.com/pub/object_service_broker/6.0.0_july_2012/doc/pdf/tib_osb_processing.pdf?id=3), Software Release 6.0, July 2012.
+
+**Use this as the primary reference** for rule syntax, condition quadrants, action statements, exception handling, and data types. See `docs/SOURCES.md` for the full file index.
+
+### TIBCO Online Documentation
 
 | Resource | URL | Notes |
 |----------|-----|-------|
@@ -133,10 +137,11 @@ These are the authoritative sources for Objectstar/OSB language details:
 ### Verification Notes
 
 - **Confirmed**: Objectstar has no IF/THEN/ELSE keywords (verified via Quick Reference)
-- **Confirmed**: Conditions evaluate to **Y or N** (verified via [TIBCO Glossary](https://docs.tibco.com/pub/object_service_broker/5.2.0_august_2010/html/tib_osb_getting_started/glossary.htm))
-- **Confirmed**: Action Sequence Numbers determine execution order (verified via TIBCO Glossary)
+- **Confirmed**: Conditions evaluate to **Y or N** (verified via TIBCO Glossary and Programming in Rules)
+- **Confirmed**: Action Sequence Numbers determine execution order
 - **Confirmed**: Uses FORALL with UNTIL exception patterns for iteration
 - **Confirmed**: Extended support ends March 30, 2027
-- **Partially verified**: The Y/N condition quadrant format — core concepts (Y/N logic, action sequence numbers) are official; the exact visual formatting (pipe separators, dashed lines, column layout) is reconstructed
+- **Confirmed**: Condition quadrant visual format with Y/N columns, pipe separators, and dashed lines — fully verified from `docs/6.0-programming-in-rules/02-rule-composition.md`
+- **Confirmed**: Maximum 6 conditions per rule (Chapter 10)
 
 See `docs/TO_VERIFY.md` for full verification details and sources.

@@ -2,36 +2,39 @@
 
 Items in the skills documentation that need verification against official TIBCO sources or practitioners with Objectstar experience.
 
-## Partially Verified: Condition Quadrant Visual Format
+## ✅ Verified: Condition Quadrant Visual Format
 
-**Status**: Core concepts verified, exact visual formatting is reconstructed
+**Status**: Fully verified from official TIBCO documentation
 
-The Y/N column format used throughout the skills:
+**Source**: [TIBCO® Object Service Broker Programming in Rules](https://docs.tibco.com/pub/object_service_broker/6.0.0_july_2012/doc/pdf/tib_osb_processing.pdf?id=3), Software Release 6.0, July 2012
+
+The official documentation in `docs/6.0-programming-in-rules/02-rule-composition.md` shows the exact visual format:
 
 ```
-condition1;                         | Y N N
-condition2;                         |   Y N
-------------------------------------------------------------+---------------
-action1;                            | 1
-action2;                            |   1
-action3;                            |     1
+RULE EDITOR ===>                                                    SCROLL: P
+RULE_NAME(ARG1, ARG2);                              ← Declaration
+LOCAL VAR1, VAR2;                                   ← Local Variables
+---------------------------------------------------------------------------
+CONDITION1;                                         | Y N N    ← Conditions
+CONDITION2;                                         |   Y N       with Y/N
+------------------------------------------------------------+-------------- Quadrant
+ACTION1;                                            | 1       ← Actions with
+ACTION2;                                            |   1        Sequence
+ACTION3;                                            |     1      Numbers
+---------------------------------------------------------------------------
+ON EXCEPTION_NAME:                                  ← Exception Handlers
+   HANDLER_STATEMENT;
 ```
-
-**Verified from TIBCO Glossary** ([source](https://docs.tibco.com/pub/object_service_broker/5.2.0_august_2010/html/tib_osb_getting_started/glossary.htm)):
 
 | Concept | Official Definition | Status |
 |---------|---------------------|--------|
 | Y/N evaluation | "Condition: An expression evaluated for its truth or logical value **(Y or N)**" | ✅ Verified |
 | Action Sequence Numbers | "An identifier that determines which rules statements are executed when a given condition is satisfied" | ✅ Verified |
-| Action definition | "A statement within a rule. An action can occupy more than one line within a rule." | ✅ Verified |
+| Visual format with pipe separators | Shown in Rule Editor examples throughout Chapter 2 | ✅ Verified |
+| Dashed line separators | Shown in official documentation | ✅ Verified |
+| Maximum 6 conditions per rule | "Up to **6 conditions** per rule" (Chapter 10) | ✅ Verified |
 
-**Still reconstructed** (not found in public docs):
-- The exact visual format with pipe separators (`|`)
-- The dashed line separators (`-----------+-----`)
-- The column alignment and spacing
-- Whether numbers appear as `| 1` or in some other format
-
-**Conclusion**: The Y/N logic and action sequence numbering are officially documented. The visual representation in the skills is a reasonable interpretation but the exact character-by-character layout would need confirmation from an actual OSB rule editor.
+**Conclusion**: The Y/N column format, pipe separators, dashed lines, and action sequence numbers are all confirmed by official TIBCO documentation.
 
 ---
 
