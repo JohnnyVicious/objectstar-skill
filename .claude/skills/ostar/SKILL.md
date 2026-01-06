@@ -52,6 +52,49 @@ Semantic types (C=Count, D=Date, I=Identifier, L=Logical, Q=Quantity, S=String) 
 ### Everything Is a Table
 Screens, reports, data stores, even rule storage—all tables. Table types: TDS (permanent), SCR (screen), TEM (temporary), SES (session), MAP (memory mapping), SUB (subview).
 
+### OTP vs Batch Contexts
+
+Objectstar rules run in two distinct contexts with different patterns:
+
+| Aspect | OTP (Online Transaction Processing) | Batch Processing |
+|--------|-------------------------------------|------------------|
+| **Interface** | 3270 terminal screens | Job streams (JCL/scripts) |
+| **User interaction** | Interactive, screen-driven | Unattended, scheduled |
+| **Data passing** | Screen tables (SCR) | Session tables (SES), parameters |
+| **Transaction model** | Short, user-paced commits | Long-running, periodic commits |
+| **Error handling** | SCREENMSG for user feedback | MSGLOG for logging |
+| **Typical patterns** | DISPLAY loops, TRANSFERCALL | FORALL with COMMIT windows |
+
+**OTP Pattern** (screen-driven):
+```
+UNTIL EXIT_DISPLAY DISPLAY ORDER_SCREEN:
+    CALL VALIDATE_ORDER;
+    CALL SAVE_ORDER;
+END;
+ON EXIT_DISPLAY:
+    CALL CLEANUP;
+```
+
+**Batch Pattern** (commit window):
+```
+LOCAL COUNT;
+COUNT = 0;
+FORALL INVOICES UNTIL GETFAIL:
+    CALL PROCESS_INVOICE;
+    COUNT = COUNT + 1;
+    COUNT >= 1000;                      | Y N
+    ----------------------------------------+-----
+    COMMIT;                             | 1
+    COUNT = 0;                          | 2
+END;
+COMMIT;  -- Final commit
+```
+
+**Migration implications**:
+- OTP rules → Web controllers with form handling
+- Batch rules → Scheduled jobs, message queues, or streaming APIs
+- Classify rules early (OTP/Batch/Shared utility) before migration
+
 ## Essential Syntax Quick Reference
 
 ### Rule Invocation

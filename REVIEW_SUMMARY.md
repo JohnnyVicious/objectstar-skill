@@ -52,7 +52,7 @@ Both skills aim to help AI assistants understand and migrate TIBCO Objectstar le
 | ~~Missing: Lock reliance side effects~~ | ~~Codex covers this, Claude doesn't~~ | **Fixed** |
 | ~~Missing: Implicit global state~~ | ~~Codex covers this anti-pattern~~ | **Fixed** |
 | ~~Missing: Repeated code blocks~~ | ~~Codex covers duplication issues~~ | **Fixed** |
-| No OTP vs Batch distinction | Codex clearly separates these contexts | Open |
+| ~~No OTP vs Batch distinction~~ | ~~Codex clearly separates these contexts~~ | **Fixed** |
 
 ### Codex Skill Gaps
 
