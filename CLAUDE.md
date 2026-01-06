@@ -25,6 +25,7 @@ This is a documentation-only repository providing AI assistant skills for analyz
       └── ObjectStar_MigrationGuide.md
 
 REVIEW_SUMMARY.md               # Skills comparison, issues, and fix status
+docs/                           # Reference documentation and external sources
 ```
 
 ## Development Guidelines
@@ -98,3 +99,44 @@ The `REVIEW_SUMMARY.md` file tracks:
 - Remaining recommendations
 
 Consult this file before making changes to understand what's been reviewed and what still needs work.
+
+## External References
+
+### TIBCO Official Documentation
+
+These are the authoritative sources for Objectstar/OSB language details:
+
+| Resource | URL | Notes |
+|----------|-----|-------|
+| **Quick Reference** | [tib_osb_quick_reference](https://docs.tibco.com/pub/object_service_broker/5.2.0_august_2010/html/tib_osb_quick_reference/qref.htm) | Best for verifying keywords, operators, statements |
+| **Programming in Rules** | [tib_osb_processing.pdf](https://docs.tibco.com/pub/object_service_broker/6.0.0_july_2012/doc/pdf/tib_osb_processing.pdf) | Comprehensive rules language guide (large PDF) |
+| **Getting Started** | [tib_osb_getting_started.pdf](https://docs.tibco.com/pub/object_service_broker/5.2.0_august_2010/pdf/tib_osb_getting_started.pdf) | Introduction and tutorials |
+| **Managing Data** | [tib_osb_mdata.pdf](https://docs.tibco.com/pub/object_service_broker/6.0.0_july_2012/doc/pdf/tib_osb_mdata.pdf) | Table types, data operations |
+| **Product Documentation** | [TIBCO OSB 6.0.0](https://docs.tibco.com/products/tibco-object-service-broker) | Full documentation index |
+| **End of Support Notice** | [Support Article](https://support.tibco.com/s/article/Tibco-KnowledgeArticle-Article-44626) | Extended support ends March 30, 2027 |
+
+### Migration Resources
+
+| Resource | URL | Notes |
+|----------|-----|-------|
+| **FreeSoft ObjectStar Conversion** | [freesoftus.com](https://freesoftus.com/services/application-code-conversion/objectstar-conversion/) | Migration tooling vendor, discusses LOCAL typing issues |
+| **FreeSoft ObjectStar Overview** | [objectstar page](https://freesoftus.com/services/application-code-conversion/objectstar/) | General migration considerations |
+
+### Anthropic Skill Development
+
+| Resource | URL | Notes |
+|----------|-----|-------|
+| **Skill Authoring Best Practices** | [platform.claude.com](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) | Naming, structure, progressive disclosure |
+| **Claude Code Skills Docs** | [code.claude.com](https://code.claude.com/docs/en/skills) | How skills work in Claude Code |
+| **Skills GitHub Repo** | [github.com/anthropics/skills](https://github.com/anthropics/skills) | Official skill examples |
+
+### Verification Notes
+
+- **Confirmed**: Objectstar has no IF/THEN/ELSE keywords (verified via Quick Reference)
+- **Confirmed**: Conditions evaluate to **Y or N** (verified via [TIBCO Glossary](https://docs.tibco.com/pub/object_service_broker/5.2.0_august_2010/html/tib_osb_getting_started/glossary.htm))
+- **Confirmed**: Action Sequence Numbers determine execution order (verified via TIBCO Glossary)
+- **Confirmed**: Uses FORALL with UNTIL exception patterns for iteration
+- **Confirmed**: Extended support ends March 30, 2027
+- **Partially verified**: The Y/N condition quadrant format — core concepts (Y/N logic, action sequence numbers) are official; the exact visual formatting (pipe separators, dashed lines, column layout) is reconstructed
+
+See `docs/TO_VERIFY.md` for full verification details and sources.

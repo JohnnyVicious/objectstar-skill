@@ -171,6 +171,9 @@ objectstar-skill/
 │
 ├── CLAUDE.md                         # Claude Code guidance
 ├── REVIEW_SUMMARY.md                 # Skills comparison & analysis
+├── docs/
+│   ├── SOURCES.md                    # External references & history
+│   └── TO_VERIFY.md                  # Items needing verification
 ├── LICENSE                           # Apache 2.0
 └── README.md
 ```
