@@ -26,6 +26,7 @@ This is a documentation-only repository providing AI assistant skills for analyz
 
 REVIEW_SUMMARY.md               # Skills comparison, issues, and fix status
 docs/                           # Reference documentation and external sources
+pdfs/                           # Archived PDFs (DO NOT CRAWL - use docs/ markdown instead)
 ```
 
 ## Development Guidelines
