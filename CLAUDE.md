@@ -13,7 +13,8 @@ This is a documentation-only repository providing AI assistant skills for analyz
   ├── SKILL.md                  # Main skill definition and workflow
   └── references/
       ├── syntax.md             # Complete Objectstar syntax reference
-      ├── patterns.md           # Code patterns and anti-patterns
+      ├── patterns.md           # Code patterns (good examples)
+      ├── pitfalls.md           # Anti-patterns and common mistakes
       ├── migration.md          # Java migration strategies
       └── tools.md              # Built-in functions reference
 
@@ -21,6 +22,7 @@ This is a documentation-only repository providing AI assistant skills for analyz
   ├── SKILL.md                  # Codex skill metadata
   └── references/
       ├── ObjectStar_Syntax.md
+      ├── ObjectStar_BuiltInTools.md
       ├── ObjectStar_Pitfalls.md
       └── ObjectStar_MigrationGuide.md
 
@@ -73,6 +75,9 @@ Key requirements from [Anthropic's best practices](https://platform.claude.com/d
 - **Description**: Write in third person, be specific about when to use
 - **Structure**: SKILL.md under 500 lines, reference files one level deep
 - **File paths**: Use forward slashes, keep references in `references/` subdirectory
+- **Domain-specific organization**: Split reference files by topic (e.g., `patterns.md` vs `pitfalls.md`) so Claude loads only relevant content based on query type—reduces token usage
+- **Avoid redundancy**: Don't repeat information within the same file; trim verbose content that duplicates frontmatter or other sections
+- **Workflow checklists**: Should be copy-paste progress trackers, not static lists
 
 ### Use Conventional Commits
 
