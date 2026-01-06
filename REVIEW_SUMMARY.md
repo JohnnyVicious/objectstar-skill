@@ -87,7 +87,7 @@ Key requirements from [Anthropic's official guidance](https://platform.claude.co
 
 | Issue | Guideline Violated | Severity | Status |
 |-------|-------------------|----------|--------|
-| **Naming: `objectstar`** | Should use gerund form (`analyzing-objectstar`) | Low | Open |
+| ~~**Naming: `objectstar`**~~ | ~~Should use gerund form~~ | ~~Low~~ | **Fixed** → `reviewing-objectstar` |
 | ~~Broken file references~~ | ~~Files not in references/ subdirectory~~ | ~~High~~ | **Fixed** |
 | **Description in third person** | Correct | OK | N/A |
 | **SKILL.md > 500 lines** | OK at 176 lines | OK | N/A |
@@ -98,7 +98,7 @@ Key requirements from [Anthropic's official guidance](https://platform.claude.co
 
 | Issue | Guideline Violated | Severity | Status |
 |-------|-------------------|----------|--------|
-| **Naming: `objectstar-language`** | Not gerund form, should be `analyzing-objectstar` | Low | Open |
+| ~~**Naming: `objectstar-language`**~~ | ~~Not gerund form~~ | ~~Low~~ | **Fixed** → `analyzing-objectstar` |
 | ~~Broken file references~~ | ~~Wrong paths and casing~~ | ~~High~~ | **Fixed** |
 | ~~**IF/ENDIF syntax error**~~ | ~~Objectstar has no IF/ENDIF - uses condition quadrants~~ | ~~**Critical**~~ | **Fixed** |
 | **Description point of view** | Third person - correct | OK | N/A |
@@ -137,21 +137,19 @@ The IF/ENDIF syntax error was verified against official TIBCO documentation:
 ### Recommended Future Improvements
 
 #### For Claude Skill
-1. Rename skill to gerund form: `analyzing-objectstar`
-2. Add missing anti-patterns from Codex skill:
+1. Add missing anti-patterns from Codex skill:
    - Lock reliance side effects
    - Implicit global state
    - Repeated code blocks
-3. Add workflow progress checklists per Anthropic guidance
+2. Add workflow progress checklists per Anthropic guidance
 
 #### For Codex Skill
-1. Rename skill to gerund form: `analyzing-objectstar`
-2. Add missing critical content:
+1. Add missing critical content:
    - Condition quadrant explanation with examples
    - Data type mapping table
    - Built-in functions reference
    - Java migration code examples
-3. Review `ENDON;` syntax - may not be standard
+2. Review `ENDON;` syntax — may not be standard
 
 ### Content Harmonization
 
@@ -172,7 +170,7 @@ Consider merging the best of both:
 | Requirement | Claude Skill | Codex Skill |
 |-------------|--------------|-------------|
 | SKILL.md < 500 lines | ✅ 176 lines | ✅ 110 lines |
-| Gerund naming | ❌ `objectstar` | ❌ `objectstar-language` |
+| Gerund naming | ✅ `reviewing-objectstar` | ✅ `analyzing-objectstar` |
 | Third-person description | ✅ | ✅ |
 | Working file references | ✅ Fixed | ✅ Fixed |
 | One-level deep references | ✅ | ✅ |

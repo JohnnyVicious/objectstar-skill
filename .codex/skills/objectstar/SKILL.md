@@ -1,5 +1,5 @@
 ---
-name: objectstar-language
+name: analyzing-objectstar
 description: >
   Skill for understanding, editing, analyzing, and migrating TIBCO ObjectStar (Object Service Broker) code used in mainframe OTP and batch applications. Activate when user is working with ObjectStar rules, asks about mainframe modernization, or legacy 4GL code involving GET, FORALL, or EXCEPTION blocks.
 license: Proprietary
