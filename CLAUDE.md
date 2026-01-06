@@ -91,6 +91,8 @@ Optional longer description.
 
 Common types: `fix`, `feat`, `docs`, `refactor`, `chore`
 
+**Do not include** `Co-Authored-By: Claude` or similar AI attribution lines in commits.
+
 Example:
 ```
 fix(skills): rename skills to follow gerund naming convention
