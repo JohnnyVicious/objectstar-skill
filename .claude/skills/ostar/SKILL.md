@@ -12,8 +12,8 @@ Objectstar is a rules-based 4GL mainframe platform using condition quadrants ins
 1. **Identify Objectstar code** → Look for condition quadrants, FORALL loops, parameterized tables
 2. **Understand rule structure** → Parse the four-section format (declaration, conditions, actions, handlers)
 3. **Analyze data flow** → Track LOCAL variable scope (visible in descendant rules)
-4. **For refactoring** → Apply patterns from `references/patterns.md`
-5. **For migration** → Map constructs using `references/migration.md`
+4. **For refactoring** → Apply patterns from [patterns.md](references/patterns.md)
+5. **For migration** → Map constructs using [migration.md](references/migration.md)
 
 ## Rule Structure (Fundamental Unit)
 
@@ -159,7 +159,7 @@ When analyzing Objectstar code:
 
 ## Migration Priorities
 
-For Java migration, address these semantic gaps (see `references/migration.md` for details):
+For Java migration, address these semantic gaps (see [migration.md](references/migration.md) for details):
 
 1. **Untyped LOCAL variables** → Type inference or wrapper classes
 2. **Descendant scope visibility** → Custom scope chain management
@@ -169,7 +169,7 @@ For Java migration, address these semantic gaps (see `references/migration.md` f
 
 ## Reference Files
 
-- `references/syntax.md` — Complete syntax reference with all data types
-- `references/patterns.md` — Common code patterns with examples
-- `references/migration.md` — Java migration mappings and strategies
-- `references/tools.md` — Built-in shareable tools reference
+- [syntax.md](references/syntax.md) — Complete syntax reference with all data types
+- [patterns.md](references/patterns.md) — Common code patterns with examples
+- [migration.md](references/migration.md) — Java migration mappings and strategies
+- [tools.md](references/tools.md) — Built-in shareable tools reference

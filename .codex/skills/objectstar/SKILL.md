@@ -27,7 +27,7 @@ ObjectStar rules are declarative procedures with sections for:
 It is used in both interactive OTP (3270 screens) and batch (job stream) contexts.
 
 ## Syntax Reference
-See [references/ObjectStar_Syntax.md](references/ObjectStar_Syntax.md) for language keywords and examples.
+See [ObjectStar_Syntax.md](references/ObjectStar_Syntax.md) for language keywords and examples.
 
 ## Best Practices
 ✅ Always trap expected exceptions (GETFAIL, INSERTFAIL) locally  
@@ -44,7 +44,7 @@ See [references/ObjectStar_Syntax.md](references/ObjectStar_Syntax.md) for langu
 ❌ Hardcoding dataset names and magic values — hinders migration  
 ❌ Reliance on implicit global state instead of parameter passing  
 
-See [references/ObjectStar_Pitfalls.md](references/ObjectStar_Pitfalls.md) for deeper explanations.
+See [ObjectStar_Pitfalls.md](references/ObjectStar_Pitfalls.md) for deeper explanations.
 
 ## Idioms and Patterns
 - **Exception loop idiom**:
@@ -64,16 +64,23 @@ See [references/ObjectStar_Pitfalls.md](references/ObjectStar_Pitfalls.md) for d
     SIGNAL ERROR;
   ```
 
-- **Batch processing with commit window**:
+- **Batch processing with commit window** (using condition quadrant):
   ```
-  FORALL INVOICES:
-    PROCESS;
-    IF $COUNTER % 1000 = 0:
-      COMMIT;
-    ENDIF;
+  BATCH_PROCESS;
+  LOCAL COUNT;
+  ---------------------------------------------------------------------------
+  COUNT = 0;
+  FORALL INVOICES UNTIL GETFAIL:
+      CALL PROCESS_INVOICE;
+      COUNT = COUNT + 1;
+      COUNT >= 1000;                      | Y N
+      ----------------------------------------+-----
+      COMMIT;                             | 1
+      COUNT = 0;                          | 2
   END;
-  COMMIT;
+  COMMIT;  -- Final commit for remaining
   ```
+  Note: Objectstar has no IF/THEN/ELSE — use condition quadrants (Y/N columns) for conditional logic.
 
 ## Refactoring Instructions
 1. Identify use of outdated patterns (e.g. ON ERROR without handler logic)
@@ -96,7 +103,7 @@ See [references/ObjectStar_Pitfalls.md](references/ObjectStar_Pitfalls.md) for d
 - Replace screen tables with data transfer objects (DTOs) or form models
 - Use a translation matrix (see reference) to map idioms to modern equivalents
 
-See [references/ObjectStar_MigrationGuide.md](references/ObjectStar_MigrationGuide.md).
+See [ObjectStar_MigrationGuide.md](references/ObjectStar_MigrationGuide.md).
 
 ## Resources
 - [ObjectStar Syntax](references/ObjectStar_Syntax.md)

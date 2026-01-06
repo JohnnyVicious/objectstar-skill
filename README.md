@@ -153,22 +153,25 @@ objectstar-skill/
 ├── .claude/
 │   └── skills/
 │       └── ostar/
-│           ├── SKILL.md        # Skill definition & workflow
-│           ├── syntax.md       # Complete language reference
-│           ├── patterns.md     # Code patterns & anti-patterns
-│           ├── migration.md    # Java migration strategies
-│           └── tools.md        # Built-in functions (100+)
+│           ├── SKILL.md              # Skill definition & workflow
+│           └── references/
+│               ├── syntax.md         # Complete language reference
+│               ├── patterns.md       # Code patterns & anti-patterns
+│               ├── migration.md      # Java migration strategies
+│               └── tools.md          # Built-in functions (100+)
 │
 ├── .codex/
 │   └── skills/
 │       └── objectstar/
-│           ├── SKILL.md        # Skill metadata
-│           ├── object_star_syntax.md
-│           ├── object_star_pitfalls.md
-│           └── object_star_migration_guide.md
+│           ├── SKILL.md              # Skill metadata
+│           └── references/
+│               ├── ObjectStar_Syntax.md
+│               ├── ObjectStar_Pitfalls.md
+│               └── ObjectStar_MigrationGuide.md
 │
-├── CLAUDE.md                   # Claude Code guidance
-├── LICENSE                     # Apache 2.0
+├── CLAUDE.md                         # Claude Code guidance
+├── REVIEW_SUMMARY.md                 # Skills comparison & analysis
+├── LICENSE                           # Apache 2.0
 └── README.md
 ```
 
@@ -180,8 +183,6 @@ objectstar-skill/
 - [x] OpenAI Codex skill — Optimized implementation
 - [ ] GitHub Copilot CLI skill
 - [ ] COBOL interop patterns (Objectstar ↔ COBOL bridges)
-- [ ] Automated migration script generation
-- [ ] VS Code extension for inline Objectstar hints
 
 ---
 
