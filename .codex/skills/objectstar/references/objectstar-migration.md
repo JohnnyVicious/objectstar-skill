@@ -1,9 +1,9 @@
-# ObjectStar Migration Guide
+# Objectstar Migration Guide
 
-Guidance for migrating TIBCO ObjectStar applications to modern platforms such as Java, C#, or REXX.
+Guidance for migrating TIBCO Objectstar applications to modern platforms such as Java, C#, or REXX.
 
 ## 1. Migration Preparation
-- Inventory all ObjectStar rules, screens, and tables from the MetaStore
+- Inventory all Objectstar rules, screens, and tables from the MetaStore
 - Classify rules: OTP screen logic vs. batch job logic
 - Extract dependencies (CALL, EXECUTE, TRANSFERCALL chains)
 - Document exception flows and transaction boundaries
@@ -11,7 +11,7 @@ Guidance for migrating TIBCO ObjectStar applications to modern platforms such as
 ## 2. Target Platform Mapping
 
 ### Element Mapping
-| ObjectStar | Java Equivalent |
+| Objectstar | Java Equivalent |
 |------------|-----------------|
 | Rule | Method or Service class |
 | LOCAL variable | Local variable / context field |
@@ -38,7 +38,7 @@ Guidance for migrating TIBCO ObjectStar applications to modern platforms such as
 | Event Rule (D) | @Formula / Computed property |
 
 ### Data Type Mapping
-| ObjectStar Semantic | ObjectStar Syntax | Java Type |
+| Objectstar Semantic | Objectstar Syntax | Java Type |
 |---------------------|-------------------|-----------|
 | Count (C) | B (Binary) | int / long |
 | Count (C) | P (Packed) | int / long |
@@ -52,7 +52,7 @@ Guidance for migrating TIBCO ObjectStar applications to modern platforms such as
 | Unicode (S) | UN | String |
 
 ### Exception Mapping
-| ObjectStar Exception | Java Equivalent |
+| Objectstar Exception | Java Equivalent |
 |---------------------|-----------------|
 | GETFAIL | EmptyResultDataAccessException / Optional.empty() |
 | INSERTFAIL | DataIntegrityViolationException |
@@ -67,14 +67,14 @@ Guidance for migrating TIBCO ObjectStar applications to modern platforms such as
 | STRINGSIZE | StringIndexOutOfBoundsException |
 
 ## 3. Migration Strategy
-- **Phase 1:** Refactor ObjectStar code for clarity and modularity (before porting)
+- **Phase 1:** Refactor Objectstar code for clarity and modularity (before porting)
 - **Phase 2:** Migrate shared business logic first (pure computation rules)
 - **Phase 3:** Migrate batch logic (replace FORALL with DB cursors or streaming APIs)
 - **Phase 4:** Reimplement screens in UI layer (web, terminal, etc.)
 - **Phase 5:** Map transactions and error handling carefully
 
 ## 4. Challenges to Expect
-- Typeless variables in ObjectStar require type inference in target language
+- Typeless variables in Objectstar require type inference in target language
 - Implicit intent list behavior must be modeled explicitly
 - Dynamic table references (e.g., `TABLES.NAME = "XYZ"; GET TABLES.NAME`) may need refactoring
 - Parameterized tables may require separate schemas or tenant-aware logic
@@ -83,7 +83,7 @@ Guidance for migrating TIBCO ObjectStar applications to modern platforms such as
 
 ### Condition Quadrant to Java
 ```
--- ObjectStar
+-- Objectstar
 CUST_TYPE = 'PREMIUM';     | Y N N
 ORDER_AMT > 1000;          |   Y N
 ---------------------------+------
@@ -110,7 +110,7 @@ public double calculateDiscount(String custType, BigDecimal orderAmt) {
 
 ### FORALL to Java Stream
 ```
--- ObjectStar
+-- Objectstar
 LOCAL TOTAL;
 TOTAL = 0;
 FORALL ORDERS WHERE CUST# = target UNTIL GETFAIL:
@@ -128,7 +128,7 @@ BigDecimal total = orderRepository.findByCustNo(target)
 
 ### Ordered Iteration
 ```
--- ObjectStar
+-- Objectstar
 FORALL EMPLOYEES ORDERED DESCENDING SALARY UNTIL GETFAIL:
     CALL PRINT_EMP(EMPLOYEES.EMP#);
 END;
@@ -142,7 +142,7 @@ employeeRepository.findAllByOrderBySalaryDesc()
 
 ### Exception Handler to try-catch
 ```
--- ObjectStar
+-- Objectstar
 GET CUSTOMERS WHERE CUST# = INPUT_ID;
 CALL PROCESS_CUSTOMER;
 ON GETFAIL:
@@ -164,7 +164,7 @@ try {
 
 ### LOCAL Variable Scope (Descendant Visibility)
 ```
--- ObjectStar - LOCAL visible in descendant rules
+-- Objectstar - LOCAL visible in descendant rules
 PARENT_RULE;
 LOCAL SHARED_VAR;
 SHARED_VAR = 'set in parent';
@@ -201,7 +201,7 @@ public void childRule(RuleContext ctx) {
 
 ### Screen to Spring MVC
 ```
--- ObjectStar
+-- Objectstar
 UNTIL EXIT_DISPLAY DISPLAY ORDER_SCREEN:
     CALL VALIDATE_INPUT;
     CALL SAVE_ORDER;
@@ -235,7 +235,7 @@ public class OrderController {
 ## 6. Tooling Suggestions
 - Build a parser or use regex to extract rule names, calls, and table access
 - Use code classification tags (e.g., `@batch`, `@screen`, `@utility`) to sort rule types
-- Maintain an exception mapping dictionary (ObjectStar → target exceptions)
+- Maintain an exception mapping dictionary (Objectstar → target exceptions)
 
 ## 7. Verification
 - Define behavioral tests for existing rules before migration

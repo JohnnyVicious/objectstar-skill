@@ -166,10 +166,10 @@ objectstar-skill/
 │       └── objectstar/
 │           ├── SKILL.md              # Skill metadata
 │           └── references/
-│               ├── ObjectStar_Syntax.md
-│               ├── ObjectStar_BuiltInTools.md
-│               ├── ObjectStar_Pitfalls.md
-│               └── ObjectStar_MigrationGuide.md
+│               ├── objectstar-syntax.md
+│               ├── objectstar-tools.md
+│               ├── objectstar-pitfalls.md
+│               └── objectstar-migration.md
 │
 ├── CLAUDE.md                         # Claude Code guidance
 ├── REVIEW_SUMMARY.md                 # Skills comparison & analysis

@@ -1,6 +1,6 @@
-# ObjectStar Syntax Reference
+# Objectstar Syntax Reference
 
-This document provides key syntax patterns for TIBCO ObjectStar rules language (Object Service Broker), applicable to both OTP and batch contexts.
+This document provides key syntax patterns for TIBCO Objectstar rules language (Object Service Broker), applicable to both OTP and batch contexts.
 
 ## Structure of a Rule
 

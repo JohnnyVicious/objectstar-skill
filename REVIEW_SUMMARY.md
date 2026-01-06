@@ -179,7 +179,7 @@ Consider merging the best of both:
 | One-level deep references | ✅ | ✅ |
 | Progressive disclosure | ✅ | ✅ |
 | Avoid time-sensitive info | ✅ | ✅ |
-| Consistent terminology | ✅ | ⚠️ Mixed casing |
+| Consistent terminology | ✅ | ✅ |
 | Workflow checklists | ✅ | ✅ |
 | Concise (no over-explanation) | ✅ | ✅ |
 | Correct domain content | ✅ | ✅ Fixed |

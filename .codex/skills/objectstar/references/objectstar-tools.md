@@ -1,4 +1,4 @@
-# ObjectStar Built-in Tools Reference
+# Objectstar Built-in Tools Reference
 
 Built-in functions (shareable tools) available in all rules. Call directly without CALL statement.
 

@@ -1,5 +1,5 @@
 ---
-name: reviewing-objectstar
+name: reviewing-Objectstar
 description: Analyze, refactor, and migrate TIBCO Objectstar (Object Service Broker) legacy mainframe applications. Use when working with Objectstar/OSB source code files, rules, screen definitions, or table definitions. Triggers on .osr, .osb file extensions, or code containing Objectstar patterns like condition quadrants (Y N columns), FORALL loops, TRANSFERCALL, parameterized tables, or rules with LOCAL declarations.
 ---
 

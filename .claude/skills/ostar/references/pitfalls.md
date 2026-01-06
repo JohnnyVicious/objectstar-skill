@@ -94,7 +94,7 @@ CALL PROCESS_STEP_2(RESULT_VAL, FINAL_VAL);
 GET STEP1_RESULTS(SESSION_ID);
 ```
 
-**Why**: ObjectStar's semantics breaks the principle of encapsulation. Implicit state creates hidden dependencies between rules, making testing and migration difficult. ([Verified](https://freesoftus.com/services/application-code-conversion/objectstar-conversion/))
+**Why**: ObjectStar's semantics breaks the principle of encapsulation. Implicit state creates hidden dependencies between rules, making testing and migration difficult. ([Verified](https://freesoftus.com/services/application-code-conversion/Objectstar-conversion/))
 
 ## Reliance on Locking Side Effects
 
@@ -115,7 +115,7 @@ SEMAPHORES.IN_USE = 'N';
 REPLACE SEMAPHORES;
 ```
 
-**Why**: ObjectStar locks non-existent primary keys — a behavior difficult to replicate in RDBMS systems. This anti-pattern causes migration bugs. ([Verified](https://freesoftus.com/services/application-code-conversion/objectstar-conversion/))
+**Why**: ObjectStar locks non-existent primary keys — a behavior difficult to replicate in RDBMS systems. This anti-pattern causes migration bugs. ([Verified](https://freesoftus.com/services/application-code-conversion/Objectstar-conversion/))
 
 ## Repeated Code Blocks
 

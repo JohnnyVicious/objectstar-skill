@@ -21,10 +21,10 @@ This is a documentation-only repository providing AI assistant skills for analyz
 .codex/skills/objectstar/       # OpenAI Codex skill: analyzing-objectstar
   ├── SKILL.md                  # Codex skill metadata
   └── references/
-      ├── ObjectStar_Syntax.md
-      ├── ObjectStar_BuiltInTools.md
-      ├── ObjectStar_Pitfalls.md
-      └── ObjectStar_MigrationGuide.md
+      ├── objectstar-syntax.md
+      ├── objectstar-tools.md
+      ├── objectstar-pitfalls.md
+      └── objectstar-migration.md
 
 REVIEW_SUMMARY.md               # Skills comparison, issues, and fix status
 docs/                           # Reference documentation and external sources

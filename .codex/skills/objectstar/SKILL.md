@@ -1,24 +1,24 @@
 ---
-name: analyzing-objectstar
+name: analyzing-Objectstar
 description: >
-  Skill for understanding, editing, analyzing, and migrating TIBCO ObjectStar (Object Service Broker) code used in mainframe OTP and batch applications. Activate when user is working with ObjectStar rules, asks about mainframe modernization, or legacy 4GL code involving GET, FORALL, or EXCEPTION blocks.
+  Skill for understanding, editing, analyzing, and migrating TIBCO Objectstar (Object Service Broker) code used in mainframe OTP and batch applications. Activate when user is working with Objectstar rules, asks about mainframe modernization, or legacy 4GL code involving GET, FORALL, or EXCEPTION blocks.
 license: Proprietary
 metadata:
   author: Legacy Modernization Team
   version: "1.0"
 ---
 
-# ObjectStar Programming Skill
+# Objectstar Programming Skill
 
 ## When to Use This Skill
-- User provides ObjectStar source code or mentions `.OSB` / MetaStore / screen rules
+- User provides Objectstar source code or mentions `.OSB` / MetaStore / screen rules
 - User asks about migrating a legacy mainframe system using TIBCO OSB
 - User asks about understanding code using `GET`, `FORALL`, `ON GETFAIL`, `DISPLAY`, `REPLACE`, etc.
-- Static analysis, refactoring, or modernization of ObjectStar code
+- Static analysis, refactoring, or modernization of Objectstar code
 
 ## Language Overview
 
-ObjectStar rules are declarative procedures with four sections:
+Objectstar rules are declarative procedures with four sections:
 - **DECLARATION**: Rule name, parameters, LOCAL variables
 - **CONDITIONS**: Y/N matrix logic (no IF/THEN/ELSE exists)
 - **ACTIONS**: Numbered execution sequence per condition column
@@ -144,7 +144,7 @@ public interface SalesRepository {
 - `SALES_WEST`, `SALES_EAST` with union views
 
 ## Syntax Reference
-See [ObjectStar_Syntax.md](references/ObjectStar_Syntax.md) for language keywords and examples.
+See [objectstar-syntax.md](references/objectstar-syntax.md) for language keywords and examples.
 
 ## Best Practices
 ✅ Always trap expected exceptions (GETFAIL, INSERTFAIL) locally  
@@ -161,7 +161,7 @@ See [ObjectStar_Syntax.md](references/ObjectStar_Syntax.md) for language keyword
 ❌ Hardcoding dataset names and magic values — hinders migration  
 ❌ Reliance on implicit global state instead of parameter passing  
 
-See [ObjectStar_Pitfalls.md](references/ObjectStar_Pitfalls.md) for deeper explanations.
+See [objectstar-pitfalls.md](references/objectstar-pitfalls.md) for deeper explanations.
 
 ## Idioms and Patterns
 - **Exception loop idiom**:
@@ -218,7 +218,7 @@ Copy these checklists to track progress on complex tasks.
 
 ### Code Analysis Workflow
 ```
-## ObjectStar Analysis Progress
+## Objectstar Analysis Progress
 
 ### 1. Structure Identification
 - [ ] Locate rule declaration and arguments
@@ -251,7 +251,7 @@ Copy these checklists to track progress on complex tasks.
 
 ### Migration Workflow
 ```
-## ObjectStar Migration Progress
+## Objectstar Migration Progress
 
 ### Phase 1: Inventory
 - [ ] Extract MetaStor (tables, rules, screens)
@@ -272,7 +272,7 @@ Copy these checklists to track progress on complex tasks.
 - [ ] Convert FORALL to repository queries + streams
 
 ### Phase 4: Exception Handling
-- [ ] Map ObjectStar exceptions to Java exceptions
+- [ ] Map Objectstar exceptions to Java exceptions
 - [ ] Convert ON handlers to try-catch blocks
 - [ ] Implement transaction boundaries (@Transactional)
 
@@ -304,10 +304,10 @@ Copy these checklists to track progress on complex tasks.
 - Replace screen tables with data transfer objects (DTOs) or form models
 - Use a translation matrix (see reference) to map idioms to modern equivalents
 
-See [ObjectStar_MigrationGuide.md](references/ObjectStar_MigrationGuide.md).
+See [objectstar-migration.md](references/objectstar-migration.md).
 
 ## Resources
-- [ObjectStar Syntax](references/ObjectStar_Syntax.md)
-- [Built-in Tools](references/ObjectStar_BuiltInTools.md)
-- [Known Pitfalls](references/ObjectStar_Pitfalls.md)
-- [Migration Guide](references/ObjectStar_MigrationGuide.md)
+- [Syntax Reference](references/objectstar-syntax.md)
+- [Built-in Tools](references/objectstar-tools.md)
+- [Known Pitfalls](references/objectstar-pitfalls.md)
+- [Migration Guide](references/objectstar-migration.md)
