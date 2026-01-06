@@ -64,7 +64,7 @@ Both skills aim to help AI assistants understand and migrate TIBCO Objectstar le
 | ~~Missing data type mappings~~ | ~~No semantic/syntax → Java tables~~ | **Fixed** |
 | ~~Missing exception hierarchy~~ | ~~No visual exception tree~~ | **Fixed** — in syntax.md |
 | ~~No condition quadrant examples~~ | ~~Critical feature barely covered~~ | **Fixed** |
-| Missing parameterized tables | Only mentioned, not explained | Open |
+| ~~Missing parameterized tables~~ | ~~Only mentioned, not explained~~ | **Fixed** |
 
 ---
 

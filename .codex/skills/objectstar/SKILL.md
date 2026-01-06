@@ -80,6 +80,71 @@ else                        { DISCOUNT = 0.05; }
 - **Numbers set order** — Multiple actions in a column run in numbered sequence
 - **Blank cells** — Condition not evaluated for that column
 
+## Parameterized Tables
+
+Objectstar tables can be **parameterized** — creating logically separate data partitions using the same table definition.
+
+### Syntax
+```
+TABLE(param1)                    -- Single parameter
+TABLE(param1, param2)            -- Multiple parameters
+```
+
+### Example: Regional Sales
+```
+REGIONAL_REPORT(REGION_CODE);
+LOCAL TOTAL;
+---------------------------------------------------------------------------
+TOTAL = 0;
+FORALL SALES(REGION_CODE) WHERE YEAR = 2024
+    ORDERED DESCENDING AMOUNT
+    UNTIL GETFAIL:
+    TOTAL = TOTAL + SALES.AMOUNT;
+END;
+CALL MSGLOG('Total for ' || REGION_CODE || ': ' || TOTAL);
+```
+
+Calling with different parameters accesses different data:
+```
+CALL REGIONAL_REPORT('WEST');    -- Accesses SALES('WEST')
+CALL REGIONAL_REPORT('EAST');    -- Accesses SALES('EAST')
+```
+
+### Common Use Cases
+| Pattern | Example |
+|---------|---------|
+| Regional partitioning | `SALES(REGION)`, `INVENTORY(WAREHOUSE)` |
+| Temporal partitioning | `TRANSACTIONS(YEAR)`, `LOGS(MONTH)` |
+| Multi-tenant | `CUSTOMERS(TENANT_ID)` |
+| Configuration | `CONFIG(ENVIRONMENT)` |
+
+### Migration Challenge
+
+Parameterized tables have no direct SQL equivalent. Migration options:
+
+**Option 1: Composite Key**
+```java
+@Entity
+public class Sales {
+    @EmbeddedId
+    private SalesId id;  // Contains region + primary key
+}
+
+// Query with region filter
+salesRepository.findByIdRegionAndYear("WEST", 2024);
+```
+
+**Option 2: Filtered Repository**
+```java
+public interface SalesRepository {
+    @Query("SELECT s FROM Sales s WHERE s.region = :region AND s.year = :year")
+    List<Sales> findByRegionAndYear(String region, int year);
+}
+```
+
+**Option 3: Separate Tables** (for strict isolation)
+- `SALES_WEST`, `SALES_EAST` with union views
+
 ## Syntax Reference
 See [ObjectStar_Syntax.md](references/ObjectStar_Syntax.md) for language keywords and examples.
 
