@@ -91,8 +91,8 @@ Key requirements from [Anthropic's official guidance](https://platform.claude.co
 | ~~Broken file references~~ | ~~Files not in references/ subdirectory~~ | ~~High~~ | **Fixed** |
 | **Description in third person** | Correct | OK | N/A |
 | **SKILL.md > 500 lines** | OK at 176 lines | OK | N/A |
-| **Missing workflow checklists** | Has analysis checklist but no copy-paste progress tracker | Medium | Open |
-| **No feedback loops** | No "run validator → fix → repeat" patterns | Medium | Open |
+| ~~**Missing workflow checklists**~~ | ~~Has analysis checklist but no copy-paste progress tracker~~ | ~~Medium~~ | **Fixed** |
+| ~~**No feedback loops**~~ | ~~No "run validator → fix → repeat" patterns~~ | ~~Medium~~ | **Fixed** |
 
 ### Codex Skill Issues
 
@@ -141,7 +141,10 @@ The IF/ENDIF syntax error was verified against official TIBCO documentation:
    - ~~Lock reliance side effects~~ (verified via FreeSoft docs)
    - ~~Implicit global state~~ (verified via FreeSoft docs)
    - ~~Repeated code blocks~~ (general best practice)
-2. Add workflow progress checklists per Anthropic guidance
+2. ~~Add workflow progress checklists per Anthropic guidance~~ **Done** — Added to SKILL.md:
+   - Code Analysis Workflow (5-phase copy-paste checklist)
+   - Migration Workflow (6-phase copy-paste checklist)
+   - Refactoring Feedback Loop pattern
 
 #### For Codex Skill
 1. Add missing critical content:

@@ -137,17 +137,95 @@ ERROR (catch-all)
     └── NULLVALUE, STRINGSIZE, SECURITYFAIL
 ```
 
-## Analysis Checklist
+## Workflow Checklists
 
-When analyzing Objectstar code:
+Copy these checklists to track progress on complex tasks.
 
-- [ ] Identify all LOCAL variables and trace their scope chain
-- [ ] Map condition quadrant logic to equivalent branching
-- [ ] Document parameterized table usage (e.g., `TABLE(REGION)`)
-- [ ] List all exception handlers and their scope
-- [ ] Identify event rules (Trigger, Validation, Derived, Location)
+### Code Analysis Workflow
+
+```
+## Objectstar Analysis Progress
+
+### 1. Structure Identification
+- [ ] Locate rule declaration and arguments
+- [ ] Identify LOCAL variables
+- [ ] Map condition quadrant columns
+- [ ] List action sequence numbers
+
+### 2. Data Flow Analysis
+- [ ] Trace LOCAL variable scope chain (which descendant rules use them?)
+- [ ] Document table access patterns (GET/REPLACE/INSERT/DELETE)
+- [ ] Identify parameterized table usage (e.g., `TABLE(REGION)`)
+
+### 3. Control Flow Analysis
+- [ ] Map condition quadrant to equivalent branching logic
+- [ ] Document FORALL iteration patterns and termination conditions
 - [ ] Note TRANSFERCALL usage (breaks return flow)
-- [ ] Check for non-standard operators (¬, ||, &, |)
+- [ ] List all CALL/EXECUTE dependencies
+
+### 4. Exception Analysis
+- [ ] List all exception handlers (ON statements)
+- [ ] Check handler specificity (table-specific before generic)
+- [ ] Identify SIGNAL statements and custom exceptions
+- [ ] Verify catch-all ON ERROR has proper handling
+
+### 5. Documentation
+- [ ] Summarize rule purpose
+- [ ] Document non-obvious business logic
+- [ ] Note migration concerns
+```
+
+### Migration Workflow
+
+```
+## Objectstar Migration Progress
+
+### Phase 1: Inventory
+- [ ] Extract complete MetaStor (tables, rules, screens)
+- [ ] Classify rules: OTP screen logic vs batch vs shared utility
+- [ ] Document all parameterized tables
+- [ ] Map CALL/EXECUTE/TRANSFERCALL dependencies
+
+### Phase 2: Schema Migration
+- [ ] Map TDS tables to relational schema
+- [ ] Convert parameterized tables to composite keys
+- [ ] Define foreign key relationships
+- [ ] Create JPA entities
+
+### Phase 3: Logic Migration (per rule)
+- [ ] Convert condition quadrants to decision logic
+- [ ] Map LOCAL variables to typed Java fields
+- [ ] Handle scope chain with context objects
+- [ ] Convert FORALL to repository queries + streams
+
+### Phase 4: Exception Handling
+- [ ] Map Objectstar exceptions to Java exceptions
+- [ ] Convert ON handlers to try-catch blocks
+- [ ] Implement transaction boundaries (@Transactional)
+
+### Phase 5: UI Migration (if OTP)
+- [ ] Convert screens to web forms (MVC)
+- [ ] Map screen tables to DTOs
+- [ ] Implement validation rules
+
+### Phase 6: Validation
+- [ ] Create test cases from existing behavior
+- [ ] Run → Compare outputs → Fix discrepancies → Repeat
+- [ ] Verify transaction semantics preserved
+```
+
+### Refactoring Feedback Loop
+
+For iterative improvement, use this pattern:
+
+```
+1. Identify anti-pattern (see patterns.md)
+2. Apply refactoring
+3. Verify rule still compiles/runs
+4. Test affected functionality
+5. If issues found → revert and retry with different approach
+6. Document changes made
+```
 
 ## Refactoring Guidelines
 
