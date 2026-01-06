@@ -102,7 +102,7 @@ Key requirements from [Anthropic's official guidance](https://platform.claude.co
 | ~~Broken file references~~ | ~~Wrong paths and casing~~ | ~~High~~ | **Fixed** |
 | ~~**IF/ENDIF syntax error**~~ | ~~Objectstar has no IF/ENDIF - uses condition quadrants~~ | ~~**Critical**~~ | **Fixed** |
 | **Description point of view** | Third person - correct | OK | N/A |
-| **Some verbose explanations** | Could be more concise | Medium | Open |
+| ~~**Some verbose explanations**~~ | ~~Could be more concise~~ | ~~Medium~~ | **Fixed** |
 
 ---
 
@@ -180,8 +180,8 @@ Consider merging the best of both:
 | Progressive disclosure | ✅ | ✅ |
 | Avoid time-sensitive info | ✅ | ✅ |
 | Consistent terminology | ✅ | ⚠️ Mixed casing |
-| Workflow checklists | ⚠️ Partial | ⚠️ Partial |
-| Concise (no over-explanation) | ✅ | ⚠️ Some verbose |
+| Workflow checklists | ✅ | ✅ |
+| Concise (no over-explanation) | ✅ | ✅ |
 | Correct domain content | ✅ | ✅ Fixed |
 
 ---

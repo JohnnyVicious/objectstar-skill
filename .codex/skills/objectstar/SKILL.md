@@ -10,8 +10,6 @@ metadata:
 
 # ObjectStar Programming Skill
 
-This skill enables AI agents to interpret, refactor, and migrate ObjectStar legacy code. ObjectStar (also known as TIBCO Object Service Broker) is a mainframe-focused 4GL used for screen-based OTP applications and batch processing. It operates with structured rules language, embedded exception handling, and integrated data access.
-
 ## When to Use This Skill
 - User provides ObjectStar source code or mentions `.OSB` / MetaStore / screen rules
 - User asks about migrating a legacy mainframe system using TIBCO OSB
@@ -199,7 +197,6 @@ See [ObjectStar_Pitfalls.md](references/ObjectStar_Pitfalls.md) for deeper expla
   END;
   COMMIT;  -- Final commit for remaining
   ```
-  Note: Objectstar has no IF/THEN/ELSE — use condition quadrants (Y/N columns) for conditional logic.
 
 ## Refactoring Instructions
 1. Identify use of outdated patterns (e.g. ON ERROR without handler logic)
@@ -215,6 +212,91 @@ See [ObjectStar_Pitfalls.md](references/ObjectStar_Pitfalls.md) for deeper expla
 - [ ] Hardcoded screen transitions or filenames?
 - [ ] Rule too long (>200 lines)? Consider modularizing.
 
+## Workflow Checklists
+
+Copy these checklists to track progress on complex tasks.
+
+### Code Analysis Workflow
+```
+## ObjectStar Analysis Progress
+
+### 1. Structure Identification
+- [ ] Locate rule declaration and arguments
+- [ ] Identify LOCAL variables
+- [ ] Map condition quadrant columns
+- [ ] List action sequence numbers
+
+### 2. Data Flow Analysis
+- [ ] Trace LOCAL variable scope (visible in descendant rules)
+- [ ] Document table access patterns (GET/REPLACE/INSERT/DELETE)
+- [ ] Identify parameterized table usage
+
+### 3. Control Flow Analysis
+- [ ] Map condition quadrant to branching logic
+- [ ] Document FORALL patterns and termination conditions
+- [ ] Note TRANSFERCALL usage (no return)
+- [ ] List all CALL/EXECUTE dependencies
+
+### 4. Exception Analysis
+- [ ] List all ON handlers
+- [ ] Check handler specificity (table-specific before generic)
+- [ ] Identify SIGNAL statements
+- [ ] Verify ON ERROR has proper handling
+
+### 5. Documentation
+- [ ] Summarize rule purpose
+- [ ] Document business logic
+- [ ] Note migration concerns
+```
+
+### Migration Workflow
+```
+## ObjectStar Migration Progress
+
+### Phase 1: Inventory
+- [ ] Extract MetaStor (tables, rules, screens)
+- [ ] Classify rules: OTP vs batch vs utility
+- [ ] Document parameterized tables
+- [ ] Map CALL/EXECUTE/TRANSFERCALL dependencies
+
+### Phase 2: Schema Migration
+- [ ] Map TDS tables to relational schema
+- [ ] Convert parameterized tables to composite keys
+- [ ] Define foreign key relationships
+- [ ] Create JPA entities
+
+### Phase 3: Logic Migration (per rule)
+- [ ] Convert condition quadrants to decision logic
+- [ ] Map LOCAL variables to typed Java fields
+- [ ] Handle scope chain with context objects
+- [ ] Convert FORALL to repository queries + streams
+
+### Phase 4: Exception Handling
+- [ ] Map ObjectStar exceptions to Java exceptions
+- [ ] Convert ON handlers to try-catch blocks
+- [ ] Implement transaction boundaries (@Transactional)
+
+### Phase 5: UI Migration (if OTP)
+- [ ] Convert screens to web forms
+- [ ] Map screen tables to DTOs
+- [ ] Implement validation rules
+
+### Phase 6: Validation
+- [ ] Create test cases from existing behavior
+- [ ] Run → Compare → Fix → Repeat
+- [ ] Verify transaction semantics preserved
+```
+
+### Refactoring Feedback Loop
+```
+1. Identify anti-pattern (see pitfalls.md)
+2. Apply refactoring
+3. Verify rule compiles/runs
+4. Test affected functionality
+5. If issues → revert and retry
+6. Document changes
+```
+
 ## Migration Strategy
 - Separate screen vs. data logic into callable modules
 - Identify and replicate exception model in target platform (e.g., Java try/catch)
@@ -229,8 +311,3 @@ See [ObjectStar_MigrationGuide.md](references/ObjectStar_MigrationGuide.md).
 - [Built-in Tools](references/ObjectStar_BuiltInTools.md)
 - [Known Pitfalls](references/ObjectStar_Pitfalls.md)
 - [Migration Guide](references/ObjectStar_MigrationGuide.md)
-
----
-
-Use this skill to safely read, update, analyze, or migrate ObjectStar code. Treat rules as structured procedures with explicit error handling. Preserve transactional semantics. Avoid global side-effects and large in-memory transactions when modernizing.
-
