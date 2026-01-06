@@ -145,11 +145,11 @@ The IF/ENDIF syntax error was verified against official TIBCO documentation:
 
 #### For Codex Skill
 1. Add missing critical content:
-   - Condition quadrant explanation with examples
+   - ~~Condition quadrant explanation with examples~~ **Done**
    - Data type mapping table
    - Built-in functions reference
    - Java migration code examples
-2. Review `ENDON;` syntax — may not be standard
+2. ~~Review `ENDON;` syntax~~ **Fixed** — removed non-standard ENDON; syntax
 
 ### Content Harmonization
 

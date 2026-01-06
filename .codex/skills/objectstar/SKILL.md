@@ -19,12 +19,66 @@ This skill enables AI agents to interpret, refactor, and migrate ObjectStar lega
 - Static analysis, refactoring, or modernization of ObjectStar code
 
 ## Language Overview
-ObjectStar rules are declarative procedures with sections for:
-- **CONDITION**: optional trigger logic (for screen events or inputs)
-- **ACTION**: primary code (data logic, rule calls, control)
-- **EXCEPTION**: structured handlers for recoverable errors (GETFAIL, LOCKFAIL, etc.)
 
-It is used in both interactive OTP (3270 screens) and batch (job stream) contexts.
+ObjectStar rules are declarative procedures with four sections:
+- **DECLARATION**: Rule name, parameters, LOCAL variables
+- **CONDITIONS**: Y/N matrix logic (no IF/THEN/ELSE exists)
+- **ACTIONS**: Numbered execution sequence per condition column
+- **EXCEPTIONS**: Structured handlers (GETFAIL, LOCKFAIL, etc.)
+
+Used in both interactive OTP (3270 screens) and batch (job stream) contexts.
+
+## Condition Quadrants (Critical Concept)
+
+Objectstar has **no IF/THEN/ELSE**. All conditional logic uses condition quadrants — a Y/N matrix that determines which actions execute.
+
+### Rule Structure
+```
+RULE_NAME(param1, param2);
+LOCAL var1, var2;                   -- Untyped local variables
+---------------------------------------------------------------------------
+condition1;                         | Y N N    -- Condition rows
+condition2;                         |   Y N
+------------------------------------------------------------+---------------
+action1;                            | 1        -- Action rows (numbered)
+action2;                            |   1
+action3;                            |     1
+---------------------------------------------------------------------------
+ON GETFAIL:                                    -- Exception handlers
+    handler_action;
+```
+
+### How It Works
+1. Conditions evaluate top-to-bottom
+2. Each column represents a unique combination (like switch cases)
+3. Y/N pattern determines which column matches
+4. Numbers indicate execution order within that column
+
+### Example: Discount Calculation
+```
+CALC_DISCOUNT(CUST_TYPE, ORDER_AMT);
+LOCAL DISCOUNT;
+---------------------------------------------------------------------------
+CUST_TYPE = 'PREMIUM';              | Y N N    -- Column 1: Premium
+ORDER_AMT > 1000;                   |   Y N    -- Column 2: Large order
+------------------------------------------------------------+---------------
+DISCOUNT = 0.20;                    | 1        -- 20% for premium
+DISCOUNT = 0.10;                    |   1      -- 10% for large orders
+DISCOUNT = 0.05;                    |     1    -- 5% default
+```
+
+Equivalent pseudo-code:
+```
+if (CUST_TYPE == 'PREMIUM') { DISCOUNT = 0.20; }
+else if (ORDER_AMT > 1000)  { DISCOUNT = 0.10; }
+else                        { DISCOUNT = 0.05; }
+```
+
+### Key Points
+- **No IF/ENDIF** — Always use condition quadrants
+- **Columns are mutually exclusive** — Only one column executes
+- **Numbers set order** — Multiple actions in a column run in numbered sequence
+- **Blank cells** — Condition not evaluated for that column
 
 ## Syntax Reference
 See [ObjectStar_Syntax.md](references/ObjectStar_Syntax.md) for language keywords and examples.
