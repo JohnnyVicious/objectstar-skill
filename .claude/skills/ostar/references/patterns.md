@@ -235,6 +235,66 @@ CALL PROCESS_TYPE_B;    -- When cond1=Y, cond2=Y, cond3=N
 -- etc.
 ```
 
+### Implicit Global State (Refactor)
+```
+-- BAD: Using screen table as implicit data passing
+-- Rule A writes to SCRATCH_SCREEN, Rule B reads from it
+-- Hidden dependency, testing difficulties
+
+CALL PROCESS_STEP_1;    -- Writes to SCRATCH_SCREEN.VALUE1
+CALL PROCESS_STEP_2;    -- Expects SCRATCH_SCREEN.VALUE1 to be set
+
+-- BETTER: Pass values explicitly via parameters
+CALL PROCESS_STEP_1(INPUT_VAL, RESULT_VAL);
+CALL PROCESS_STEP_2(RESULT_VAL, FINAL_VAL);
+
+-- Or use session tables with clear naming
+GET STEP1_RESULTS(SESSION_ID);
+```
+
+**Why**: ObjectStar's semantics breaks the principle of encapsulation. Implicit state creates hidden dependencies between rules, making testing and migration difficult. ([Verified](https://freesoftus.com/services/application-code-conversion/objectstar-conversion/))
+
+### Reliance on Locking Side Effects (Refactor)
+```
+-- BAD: Using GET to lock a non-existent key
+GET LOCKS_TABLE WHERE KEY = 'PROCESS_XYZ';
+-- In ObjectStar, this locks 'PROCESS_XYZ' even if no record exists
+-- Used as a semaphore/mutex pattern
+
+-- BETTER: Use explicit locking table with actual records
+GET SEMAPHORES WHERE SEM_NAME = 'PROCESS_XYZ' WITH MINLOCK;
+SEMAPHORES.IN_USE = 'Y';
+REPLACE SEMAPHORES;
+-- Release lock
+SEMAPHORES.IN_USE = 'N';
+REPLACE SEMAPHORES;
+```
+
+**Why**: ObjectStar locks non-existent primary keys — a behavior difficult to replicate in RDBMS systems. This anti-pattern causes migration bugs. ([Verified](https://freesoftus.com/services/application-code-conversion/objectstar-conversion/))
+
+### Repeated Code Blocks (Refactor)
+```
+-- BAD: Same tax calculation in multiple rules
+-- In CALC_ORDER:
+TAX = SUBTOTAL * 0.08;
+-- In CALC_INVOICE:
+TAX = SUBTOTAL * 0.08;
+-- In CALC_ESTIMATE:
+TAX = SUBTOTAL * 0.08;
+
+-- BETTER: Extract to shared utility rule
+CALC_TAX(AMOUNT);
+LOCAL TAX_RATE;
+---------------------------------------------------------------------------
+GET CONFIG WHERE KEY = 'TAX_RATE';
+RETURN(AMOUNT * CONFIG.VALUE);
+---------------------------------------------------------------------------
+ON GETFAIL:
+    RETURN(AMOUNT * 0.08);  -- Default fallback
+```
+
+**Why**: Duplicated business logic leads to inconsistent behavior when one copy is updated but others are forgotten. Extract to shared rules invoked via CALL.
+
 ## Performance Patterns
 
 ### Use Browse Mode for Reads

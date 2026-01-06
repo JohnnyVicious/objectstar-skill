@@ -137,10 +137,10 @@ The IF/ENDIF syntax error was verified against official TIBCO documentation:
 ### Recommended Future Improvements
 
 #### For Claude Skill
-1. Add missing anti-patterns from Codex skill:
-   - Lock reliance side effects
-   - Implicit global state
-   - Repeated code blocks
+1. ~~Add missing anti-patterns from Codex skill~~ **Done** — Added to patterns.md:
+   - ~~Lock reliance side effects~~ (verified via FreeSoft docs)
+   - ~~Implicit global state~~ (verified via FreeSoft docs)
+   - ~~Repeated code blocks~~ (general best practice)
 2. Add workflow progress checklists per Anthropic guidance
 
 #### For Codex Skill

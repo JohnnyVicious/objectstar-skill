@@ -49,6 +49,8 @@ For reference, these items have been verified:
 | Support ends March 2027 | [TIBCO Support Article](https://support.tibco.com/s/article/Tibco-KnowledgeArticle-Article-44626) | Official announcement |
 | Originally named Huron | Multiple web sources | Created by Amdahl Corporation |
 | LOCAL variables untyped | FreeSoft migration docs | "ObjectStar's LOCAL data has no declared type" |
+| Locks non-existent keys | [FreeSoft](https://freesoftus.com/services/application-code-conversion/objectstar-conversion/) | "when a table is queried for a specific primary key value and no record is found, the specified primary key will be 'locked'" |
+| Breaks encapsulation | [FreeSoft](https://freesoftus.com/services/application-code-conversion/objectstar-conversion/) | "ObjectStar's semantics breaks the principle of Encapsulation" |
 
 ---
 
